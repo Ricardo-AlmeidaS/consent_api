@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDateTime;
@@ -67,5 +68,12 @@ public class ConsentService {
 
     public Optional<Consent> deleteConsent(UUID id) {
         return consentRepository.findById(id);
+    }
+
+    @Transactional
+    public int expireActiveConsents() {
+        return consentRepository.expireActiveConsents(
+                LocalDateTime.now()
+        );
     }
 }

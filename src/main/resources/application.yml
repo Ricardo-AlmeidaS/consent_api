@@ -29,3 +29,7 @@ springdoc:
     operationsSorter: method
     tagsSorter: alpha
   show-actuator: true
+
+consents:
+  expiration:
+    fixed-delay-ms: 150000
